@@ -13,5 +13,7 @@ module ARM_processor (
 
 	//clock key debounce
 	debouncer clean (.A_noisy(CLKb), .CLK50M(CLK), .A(CLK_clean)); //CLKb=KEY0, CLK=50mhz PIN_P11
+    //peek key debounce
+	debouncer clean (.A_noisy(PKb), .CLK50M(CLK), .A(PK_clean)); //PKb=KEY1
 
 endmodule
