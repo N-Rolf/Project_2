@@ -6,5 +6,4 @@ module ALU (
 );
 
 
-
 endmodule
