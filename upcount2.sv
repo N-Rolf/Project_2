@@ -6,7 +6,7 @@ module upcount2 (
 always_ff @ (negedge CLK_clean)
 begin
 	if (CLR)
-		CNT <= 1'b0;
+		CNT <= 0;
 	else
 		CNT <= CNT + 1;
 	end
