@@ -11,6 +11,6 @@ begin
 		CNT <= CNT + 1;
 	end
 
-
+//count
 
 endmodule
