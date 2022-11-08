@@ -1,12 +1,12 @@
 //top level file for 10-bit processor
 module ARM_processor (
-    input logic [9:0] Data_in,
+    input logic 
     output logic [7:0] HEX0,
     output logic [7:0] HEX1,
     output logic [7:0] HEX2,
     output logic [7:0] HEX3,
     output logic [7:0] HEX4,
-    output logic [7:0] HEX5
+    output logic [7:0] HEX5,
 );
 
 
