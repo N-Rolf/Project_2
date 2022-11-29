@@ -35,14 +35,13 @@
 *
 ********************************************/
 
-module LAB_7ALU ( //ALUcontroller(
+module ALUcontroller ( 
 	input logic [7:0] INPUT,
-	input logic [1:0] ALUcontrol,
+	input logic [2:0] ALUcontrol,
 	input logic CLKb, CLK50M,
 	
 	output logic [6:0] Aseg1, Aseg0, Bseg1, Bseg0, Cseg1, Cseg0,
-	output logic V, C, Neg, Z
-);
+	);
 	
 	/*
 	* debounce the clock
@@ -89,14 +88,14 @@ module LAB_7ALU ( //ALUcontroller(
 	*	replace the module names with your 7-segment hex decoder
 	*/ 
 	
-	seven_seg hexA1(.E(_A[4]), .A(_A[5]), .B(_A[6]), .C(_A[7]), .Y(Aseg1));
-	seven_seg hexA0(.E(_A[0]), .A(_A[1]), .B(_A[2]), .C(_A[3]), .Y(Aseg0));
+	hex7decoder hexA1(.in[3](_A[4]), .in[2](_A[5]), .in[1](_A[6]), .in[0](_A[7]), .num(Aseg1));
+	hex7decoder hexA0(.in[3](_A[0]), .in[2](_A[1]), .in[1](_A[2]), .in[0](_A[3]), .num(Aseg0));
 	
-	seven_seg hexB1(.E(INPUT[4]), .A(INPUT[5]), .B(INPUT[6]), .C(INPUT[7]), .Y(Bseg1));
-	seven_seg hexB0(.E(INPUT[0]), .A(INPUT[1]), .B(INPUT[2]), .C(INPUT[3]), .Y(Bseg0));
+	hex7decoder hexB1(.in[3](INPUT[4]), .in[2](INPUT[5]), .in[1](INPUT[6]), .in[0](INPUT[7]), .num(Bseg1));
+	hex7decoder hexB0(.in[3](INPUT[0]), .in[2](INPUT[1]), .in[1](INPUT[2]), .in[0](INPUT[3]), .num(Bseg0));
 	
-	seven_seg hexC1(.E(_Cout[4]), .A(_Cout[5]), .B(_Cout[6]), .C(_Cout[7]), .Y(Cseg1));
-	seven_seg hexC0(.E(_Cout[0]), .A(_Cout[1]), .B(_Cout[2]), .C(_Cout[3]), .Y(Cseg0));
+	hex7decoder hexC1(.in[3](_Cout[4]), .in[2](_Cout[5]), .in[1](_Cout[6]), .in[0](_Cout[7]), .num(Cseg1));
+	hex7decoder hexC0(.in[3](_Cout[0]), .in[2](_Cout[1]), .in[1](_Cout[2]), .in[0](_Cout[3]), .num(Cseg0));
 
 
 
