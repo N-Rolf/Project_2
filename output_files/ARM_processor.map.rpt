@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ARM_processor
-Tue Nov  8 15:38:49 2022
+Tue Nov 29 14:27:21 2022
 Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
 
 
@@ -14,11 +14,13 @@ Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Parameter Settings for User Entity Instance: debouncer:clean
- 10. Port Connectivity Checks: "debouncer:clean"
- 11. Post-Synthesis Netlist Statistics for Top Partition
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
+  9. Parameter Settings for User Entity Instance: debouncer:CLKclean
+ 10. Parameter Settings for User Entity Instance: debouncer:PKclean
+ 11. Port Connectivity Checks: "debouncer:PKclean"
+ 12. Port Connectivity Checks: "debouncer:CLKclean"
+ 13. Post-Synthesis Netlist Statistics for Top Partition
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
 
 
 
@@ -45,7 +47,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov  8 15:38:49 2022       ;
+; Analysis & Synthesis Status        ; Successful - Tue Nov 29 14:27:21 2022       ;
 ; Quartus Prime Version              ; 21.1.1 Build 850 06/23/2022 SJ Lite Edition ;
 ; Revision Name                      ; ARM_processor                               ;
 ; Top-level Entity Name              ; ARM_processor                               ;
@@ -54,7 +56,7 @@ https://fpgasoftware.intel.com/eula.
 ;     Total combinational functions  ; 0                                           ;
 ;     Dedicated logic registers      ; 0                                           ;
 ; Total registers                    ; 0                                           ;
-; Total pins                         ; 71                                          ;
+; Total pins                         ; 72                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -196,13 +198,13 @@ https://fpgasoftware.intel.com/eula.
 ;     -- Dedicated logic registers            ; 0     ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
-; I/O pins                                    ; 71    ;
+; I/O pins                                    ; 72    ;
 ;                                             ;       ;
 ; Embedded Multiplier 9-bit elements          ; 0     ;
 ;                                             ;       ;
 ; Maximum fan-out node                        ; CLKb  ;
 ; Maximum fan-out                             ; 1     ;
-; Total fan-out                               ; 71    ;
+; Total fan-out                               ; 72    ;
 ; Average fan-out                             ; 0.50  ;
 +---------------------------------------------+-------+
 
@@ -212,7 +214,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+---------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name   ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+---------------+--------------+
-; |ARM_processor             ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 71   ; 0            ; 0          ; |ARM_processor      ; ARM_processor ; work         ;
+; |ARM_processor             ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 72   ; 0            ; 0          ; |ARM_processor      ; ARM_processor ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -232,18 +234,37 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: debouncer:clean ;
-+----------------+------------------+--------------------------+
-; Parameter Name ; Value            ; Type                     ;
-+----------------+------------------+--------------------------+
-; COMPARE        ; 1100001101010000 ; Unsigned Binary          ;
-+----------------+------------------+--------------------------+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debouncer:CLKclean ;
++----------------+------------------+-----------------------------+
+; Parameter Name ; Value            ; Type                        ;
++----------------+------------------+-----------------------------+
+; COMPARE        ; 1100001101010000 ; Unsigned Binary             ;
++----------------+------------------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debouncer:PKclean ;
++----------------+------------------+----------------------------+
+; Parameter Name ; Value            ; Type                       ;
++----------------+------------------+----------------------------+
+; COMPARE        ; 1100001101010000 ; Unsigned Binary            ;
++----------------+------------------+----------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "debouncer:clean"                                                                    ;
+; Port Connectivity Checks: "debouncer:PKclean"                                                                  ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; A    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "debouncer:CLKclean"                                                                 ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -256,7 +277,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 71                          ;
+; boundary_port         ; 72                          ;
 ; cycloneiii_lcell_comb ; 1                           ;
 ;     normal            ; 1                           ;
 ;         0 data inputs ; 1                           ;
@@ -281,83 +302,86 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
-    Info: Processing started: Tue Nov  8 15:38:39 2022
+    Info: Processing started: Tue Nov 29 14:27:07 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ARM_processor -c ARM_processor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Warning (12125): Using design file arm_processor.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: ARM_processor File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 2
-Warning (10236): Verilog HDL Implicit Net warning at arm_processor.sv(15): created implicit net for "CLK_clean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 15
+Warning (10236): Verilog HDL Implicit Net warning at arm_processor.sv(16): created implicit net for "CLK_clean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 16
+Warning (10236): Verilog HDL Implicit Net warning at arm_processor.sv(18): created implicit net for "PK_clean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 18
 Info (12127): Elaborating entity "ARM_processor" for the top level hierarchy
-Warning (10034): Output port "LED_B" at arm_processor.sv(5) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-Warning (10034): Output port "HEX0" at arm_processor.sv(6) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-Warning (10034): Output port "HEX1" at arm_processor.sv(7) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-Warning (10034): Output port "HEX2" at arm_processor.sv(8) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-Warning (10034): Output port "HEX3" at arm_processor.sv(9) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-Warning (10034): Output port "HEX4" at arm_processor.sv(10) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-Warning (10034): Output port "HEX5" at arm_processor.sv(12) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
+Warning (10034): Output port "LED_B" at arm_processor.sv(6) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+Warning (10034): Output port "HEX0" at arm_processor.sv(7) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+Warning (10034): Output port "HEX1" at arm_processor.sv(8) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+Warning (10034): Output port "HEX2" at arm_processor.sv(9) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+Warning (10034): Output port "HEX3" at arm_processor.sv(10) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+Warning (10034): Output port "HEX4" at arm_processor.sv(11) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+Warning (10034): Output port "HEX5" at arm_processor.sv(13) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+Warning (10034): Output port "done" at arm_processor.sv(5) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
 Warning (12125): Using design file debouncer.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: debouncer File: C:/Users/neilr/Desktop/Project_2/Project_2/debouncer.sv Line: 15
-Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:clean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 15
+Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:CLKclean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 16
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LED_B[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[8]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "LED_B[9]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
-    Warning (13410): Pin "HEX0[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX0[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX0[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX0[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX0[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX0[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX0[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX0[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-    Warning (13410): Pin "HEX1[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX1[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX1[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX1[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX1[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX1[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX1[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX1[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-    Warning (13410): Pin "HEX2[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX2[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX2[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX2[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX2[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX2[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX3[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX3[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX3[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX3[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
-    Warning (13410): Pin "HEX4[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX4[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX4[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX4[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX4[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX4[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX4[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
-    Warning (13410): Pin "HEX5[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
-    Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
-    Warning (13410): Pin "HEX5[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
-    Warning (13410): Pin "HEX5[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
-    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
-    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
-    Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
-    Warning (13410): Pin "HEX5[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 12
+    Warning (13410): Pin "done" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
+    Warning (13410): Pin "LED_B[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[8]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "LED_B[9]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
+    Warning (13410): Pin "HEX0[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX0[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX0[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX0[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX0[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX0[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX0[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX0[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
+    Warning (13410): Pin "HEX1[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX1[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX1[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX1[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX1[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX1[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX2[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX2[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX3[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX3[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX3[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX4[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX4[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
+    Warning (13410): Pin "HEX5[7]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 13 input pin(s) that do not drive logic
@@ -374,13 +398,13 @@ Warning (21074): Design contains 13 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "Data_in[7]" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 4
     Warning (15610): No output dependent on input pin "Data_in[8]" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 4
     Warning (15610): No output dependent on input pin "Data_in[9]" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 4
-Info (21057): Implemented 71 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 72 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
-    Info (21059): Implemented 58 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 84 warnings
-    Info: Peak virtual memory: 4746 megabytes
-    Info: Processing ended: Tue Nov  8 15:38:49 2022
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:24
+    Info (21059): Implemented 59 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 87 warnings
+    Info: Peak virtual memory: 4753 megabytes
+    Info: Processing ended: Tue Nov 29 14:27:21 2022
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:33
 
 

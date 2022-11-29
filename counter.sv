@@ -1,9 +1,9 @@
-module upcount2 (
-    input logic CLR, CLK_clean,
+module counter (
+    input logic CLR, CLK,
     output logic [1:0] CNT
 );
 	
-always_ff @ (negedge CLK_clean)
+always_ff @ (negedge CLK)
 begin
 	if (CLR)
 		CNT <= 0;

@@ -1,4 +1,4 @@
-Analysis & Synthesis Status : Successful - Tue Nov  8 15:38:49 2022
+Analysis & Synthesis Status : Successful - Tue Nov 29 14:27:21 2022
 Quartus Prime Version : 21.1.1 Build 850 06/23/2022 SJ Lite Edition
 Revision Name : ARM_processor
 Top-level Entity Name : ARM_processor
@@ -7,7 +7,7 @@ Total logic elements : 0
     Total combinational functions : 0
     Dedicated logic registers : 0
 Total registers : 0
-Total pins : 71
+Total pins : 72
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0
