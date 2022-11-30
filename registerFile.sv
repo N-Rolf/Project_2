@@ -7,52 +7,38 @@ module registerFile (
 
 assign ENR1 = 1'b1;
 assign RDA1 = D[2:0];
-logic _Q;
+logic _WQ, _RQ1, _RQ0;
+
 logic dWRA, dRDA1, dRDA0;
 
 always_ff@(negedge CLKb)
 begin
 	if (ENW)
-		Q0 <= WRA;
+		Q0 <= _WQ;
 end 
-
-
-//decode WRA and RAD0 and RDA1
-
-
-
-
-
-reg10 Write1 (.D(D), .EN(dWRA), .CLKb(CLKb), .Q(_Q));
-
-
-reg10 Read01 (.D(D), .EN(RDA0[2]), .CLKb(CLKb), .Q(_Q));
-reg10 Read02 (.D(D), .EN(RDA0[1]), .CLKb(CLKb), .Q(_Q));
-reg10 Read03 (.D(D), .EN(RDA0[0]), .CLKb(CLKb), .Q(_Q));
-
-reg10 Read11 (.D(D), .EN(RDA1[2]), .CLKb(CLKb), .Q(_Q));
-reg10 Read12 (.D(D), .EN(RDA1[1]), .CLKb(CLKb), .Q(_Q));
-reg10 Read13(.D(D), .EN(RDA1[0]), .CLKb(CLKb), .Q(_Q));
-
-
-
 
 always
 begin
+	begin
 	if (ENR1)
-		Q1 <= RDA1;
-	else
-		Q1 <= 1'b0000000000;
-	
+		Q1 <= _RQ1;
+	end
+	begin
 	if (ENR0)
-		Q0 <= RAD0;
-	else
-		Q0 <= 1'b0000000000;
-
+		Q0 <= _RQ0;
+	end
 end
 
+//decode WRA and RAD0 and RDA1?
 
 
+
+
+reg10 Write1 (.D(D), .EN(dWRA), .CLKb(CLKb), .Q(_WQ));
+
+reg10 Read1 (.D(D), .EN(dRDA1), .CLKb(CLKb), .Q(_RQ1));
+
+reg10 Read0 (.D(D), .EN(dRDA0), .CLKb(CLKb), .Q(_RQ0));
 
 
 
