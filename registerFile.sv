@@ -26,7 +26,6 @@ end
 reg10 Write1 (.D(D), .EN(dWRA), .CLKb(CLKb), .Q(_Q));
 
 
-
 reg10 Read01 (.D(D), .EN(RDA0[2]), .CLKb(CLKb), .Q(_Q));
 reg10 Read02 (.D(D), .EN(RDA0[1]), .CLKb(CLKb), .Q(_Q));
 reg10 Read03 (.D(D), .EN(RDA0[0]), .CLKb(CLKb), .Q(_Q));
