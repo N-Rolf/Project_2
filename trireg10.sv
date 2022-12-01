@@ -14,7 +14,7 @@ module trireg10 (
 		if (Rout0)
 			Q0 = _Q;
 		else
-			Q1 = 10'bzz_zzzz_zzzz;
+			Q0 = 10'bzz_zzzz_zzzz;
 		end
 		
 		begin

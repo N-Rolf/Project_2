@@ -27,32 +27,32 @@ module msALU (
 
 	always
 	begin
-		if (ALUControl == ADD)
+		if (FN == ADD)
 		begin
 			Result = A + OP;	
 		end	
 		
-		else if (ALUControl == SUB)
+		else if (FN == SUB)
 		begin
 			Result = A - OP;
 		end
 
-		else if (ALUControl == INV)
+		else if (FN == INV)
 		begin
 			Result = -(OP);
 		end
 
-		else if (ALUControl == AND)
+		else if (FN == AND)
 		begin
 			Result = A & OP;
 		end
 		
-		else if (ALUControl == OR)
+		else if (FN == OR)
 		begin
 			Result = A | OP;
 		end
 		
-		else if (ALUControl == XOR)
+		else if (FN == XOR)
 		begin
 			Result = A ^ OP;
 		end
