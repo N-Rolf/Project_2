@@ -5,6 +5,7 @@ module registerFile (
     output logic [9:0] Q0, Q1
 );
 
+logic ENR1;
 
 
 
