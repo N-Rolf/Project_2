@@ -6,35 +6,27 @@ module registerFile (
 );
 
 logic ENR1;
-
-
-
 assign ENR1 = 1'b1;
-assign RDA1 = D[2:0];
-logic _WQ, _RQ1, _RQ0;
 
-logic dWRA, dRDA1, dRDA0;
 
-always_ff@(negedge CLKb)
-begin
-	if (ENW)
-		Q0 <= _WQ;
-end 
 
-always
-begin
-	begin
-	if (ENR1)
-		Q1 <= _RQ1;
-	end
-	begin
-	if (ENR0)
-		Q0 <= _RQ0;
-	end
-end
+
+logic [7:0] Rin, Rout0, Rout1;
+
+
+
 
 //decode WRA and RAD0 and RDA1?
+DECODE
 
+trireg10 R0 (.D(D), .CLKb(CLKb), .Rin(Rin[0]), .Rout0(Rout0[0]), .Rout1(Rout1[0]), .Q0(Q0), .Q1(Q1));
+trireg10 R1 (.D(D), .CLKb(CLKb), .Rin(Rin[1]), .Rout0(Rout0[1]), .Rout1(Rout1[1]), .Q0(Q0), .Q1(Q1));
+trireg10 R2 (.D(D), .CLKb(CLKb), .Rin(Rin[2]), .Rout0(Rout0[2]), .Rout1(Rout1[2]), .Q0(Q0), .Q1(Q1));
+trireg10 R3 (.D(D), .CLKb(CLKb), .Rin(Rin[3]), .Rout0(Rout0[3]), .Rout1(Rout1[3]), .Q0(Q0), .Q1(Q1));
+trireg10 R4 (.D(D), .CLKb(CLKb), .Rin(Rin[4]), .Rout0(Rout0[4]), .Rout1(Rout1[4]), .Q0(Q0), .Q1(Q1));
+trireg10 R5 (.D(D), .CLKb(CLKb), .Rin(Rin[5]), .Rout0(Rout0[5]), .Rout1(Rout1[5]), .Q0(Q0), .Q1(Q1));
+trireg10 R6 (.D(D), .CLKb(CLKb), .Rin(Rin[6]), .Rout0(Rout0[6]), .Rout1(Rout1[6]), .Q0(Q0), .Q1(Q1));
+trireg10 R7 (.D(D), .CLKb(CLKb), .Rin(Rin[7]), .Rout0(Rout0[7]), .Rout1(Rout1[7]), .Q0(Q0), .Q1(Q1));
 
 
 
