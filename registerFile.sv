@@ -13,9 +13,9 @@ logic [7:0] Rin, Rout0, Rout1;
 
 
 //Decode WRA, RDA0, and RDA1 3 to 8 bits
-3to8decoder write_decoder (.in(WRA), .EN(ENW), .out(Rin));
-3to8decoder read0_decoder (.in(RDA0), .EN(ENR0), .out(Rout0));
-3to8decoder read1_decoder (.in(RDA1), .EN(ENR1), .out(Rout1));
+decoder_3to8 write_decoder (.in(WRA), .EN(ENW), .out(Rin));
+decoder_3to8 read0_decoder (.in(RDA0), .EN(ENR0), .out(Rout0));
+decoder_3to8 read1_decoder (.in(RDA1), .EN(ENR1), .out(Rout1));
 
 
 trireg10 R0 (.D(D), .CLKb(CLKb), .Rin(Rin[0]), .Rout0(Rout0[0]), .Rout1(Rout1[0]), .Q0(Q0), .Q1(Q1));

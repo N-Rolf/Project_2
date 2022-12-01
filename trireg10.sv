@@ -8,13 +8,13 @@ module trireg10 (
 	
 	reg10 register (.D(D), .CLKb(CLKb), .EN(Rin), .Q(_Q));
 	
-	always_comb
+	always
 	begin
 		begin
 		if (Rout0)
 			Q0 = _Q;
 		else
-			Q1 = 10'bzz_zzzz_zzzz;
+			Q0 = 10'bzz_zzzz_zzzz;
 		end
 		
 		begin

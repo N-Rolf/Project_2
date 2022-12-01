@@ -1,6 +1,6 @@
 module msALU (
 	input logic [9:0] OP,
-	input logic [2:0] FN,
+	input logic [2:0] ALUControl,
 	input logic Ain, Gin, Gout, CLKb,
 	output logic [9:0] Q
 	);

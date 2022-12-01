@@ -1,4 +1,4 @@
-module 3to8decoder (
+module decoder_3to8 (
 	input logic [2:0] in,
 	input EN,
 	output logic [7:0] out

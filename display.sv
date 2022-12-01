@@ -1,5 +1,5 @@
-module output (
-    input logic [9:0] BUS,          //10 bits from input/shared but
+module display (
+    input logic [9:0] BUS,          //10 bits from input/shared bus
     input logic [9:0] REG,          //10 bits from register file Q1
     input logic [1:0] TIME,         //2 bits from counter
     input logic PEEKb, DONE,        //PEEKb - from switch, done - from clr in controller

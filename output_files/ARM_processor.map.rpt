@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ARM_processor
-Tue Nov 29 14:27:21 2022
+Thu Dec  1 15:13:22 2022
 Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
 
 
@@ -16,11 +16,17 @@ Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
   8. General Register Statistics
   9. Parameter Settings for User Entity Instance: debouncer:CLKclean
  10. Parameter Settings for User Entity Instance: debouncer:PKclean
- 11. Port Connectivity Checks: "debouncer:PKclean"
- 12. Port Connectivity Checks: "debouncer:CLKclean"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 11. Parameter Settings for User Entity Instance: msALU:doMath
+ 12. Port Connectivity Checks: "display:displayStuff"
+ 13. Port Connectivity Checks: "msALU:doMath"
+ 14. Port Connectivity Checks: "registerFile:regBank|decoder_3to8:read1_decoder"
+ 15. Port Connectivity Checks: "registerFile:regBank"
+ 16. Port Connectivity Checks: "counter:timeStep"
+ 17. Port Connectivity Checks: "reg10:nextInst"
+ 18. Port Connectivity Checks: "debouncer:PKclean"
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
 
 
 
@@ -47,7 +53,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov 29 14:27:21 2022       ;
+; Analysis & Synthesis Status        ; Successful - Thu Dec  1 15:13:22 2022       ;
 ; Quartus Prime Version              ; 21.1.1 Build 850 06/23/2022 SJ Lite Edition ;
 ; Revision Name                      ; ARM_processor                               ;
 ; Top-level Entity Name              ; ARM_processor                               ;
@@ -175,6 +181,14 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------------------+-------------------------------------------------------------+---------+
 ; arm_processor.sv                 ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv ;         ;
 ; debouncer.sv                     ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/debouncer.sv     ;         ;
+; reg10.sv                         ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/reg10.sv         ;         ;
+; counter.sv                       ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/counter.sv       ;         ;
+; registerfile.sv                  ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/registerfile.sv  ;         ;
+; decoder_3to8.sv                  ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/decoder_3to8.sv  ;         ;
+; trireg10.sv                      ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/trireg10.sv      ;         ;
+; msalu.sv                         ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv         ;         ;
+; display.sv                       ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/display.sv       ;         ;
+; hex7decoder.sv                   ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv   ;         ;
 +----------------------------------+-----------------+------------------------------------+-------------------------------------------------------------+---------+
 
 
@@ -254,17 +268,92 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: msALU:doMath ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; ADD            ; 000   ; Unsigned Binary                  ;
+; SUB            ; 001   ; Unsigned Binary                  ;
+; INV            ; 010   ; Unsigned Binary                  ;
+; AND            ; 011   ; Unsigned Binary                  ;
+; OR             ; 100   ; Unsigned Binary                  ;
+; XOR            ; 101   ; Unsigned Binary                  ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "display:displayStuff"                                                                                                                                                  ;
++-------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                                                                                                               ;
++-------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; TIME  ; Input  ; Warning  ; Input port expression (1 bits) is smaller than the input port (2 bits) it drives.  Extra input bit(s) "TIME[1..1]" will be connected to GND.                          ;
+; DHEX0 ; Output ; Warning  ; Output or bidir port (7 bits) is smaller than the port expression (8 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; DHEX1 ; Output ; Warning  ; Output or bidir port (7 bits) is smaller than the port expression (8 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; DHEX2 ; Output ; Warning  ; Output or bidir port (7 bits) is smaller than the port expression (8 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; THEX  ; Output ; Warning  ; Output or bidir port (7 bits) is smaller than the port expression (8 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND. ;
+; LED_D ; Output ; Info     ; Explicitly unconnected                                                                                                                                                ;
++-------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "msALU:doMath"                                                                                                                                               ;
++------------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type    ; Severity         ; Details                                                                                                                                      ;
++------------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; FN         ; Unknown ; Critical Warning ; Named port was not declared by the instantiated entity                                                                                       ;
+; Ain        ; Input   ; Info             ; Explicitly unconnected                                                                                                                       ;
+; Gin        ; Input   ; Info             ; Explicitly unconnected                                                                                                                       ;
+; Gout       ; Input   ; Info             ; Explicitly unconnected                                                                                                                       ;
+; ALUControl ; Input   ; Warning          ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++------------+---------+------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerFile:regBank|decoder_3to8:read1_decoder" ;
++------+-------+----------+---------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                           ;
++------+-------+----------+---------------------------------------------------+
+; EN   ; Input ; Info     ; Stuck at VCC                                      ;
++------+-------+----------+---------------------------------------------------+
+
+
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "debouncer:PKclean"                                                                  ;
+; Port Connectivity Checks: "registerFile:regBank"                                                               ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
-; A    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ENW  ; Input  ; Info     ; Explicitly unconnected                                                              ;
+; ENRO ; Input  ; Info     ; Explicitly unconnected                                                              ;
+; WRA  ; Input  ; Info     ; Explicitly unconnected                                                              ;
+; RDA0 ; Input  ; Info     ; Explicitly unconnected                                                              ;
+; RDA1 ; Input  ; Info     ; Explicitly unconnected                                                              ;
+; Q0   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "counter:timeStep"                                                                                                      ;
++------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                ;
++------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
+; CNT  ; Output ; Warning  ; Output or bidir port (2 bits) is wider than the port expression (1 bits) it drives; bit(s) "CNT[1..1]" have no fanouts ;
++------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg10:nextInst"                                                                                                       ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                               ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------+
+; Q    ; Output ; Warning  ; Output or bidir port (10 bits) is wider than the port expression (1 bits) it drives; bit(s) "Q[9..1]" have no fanouts ;
+; Q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                   ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------+
+
+
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "debouncer:CLKclean"                                                                 ;
+; Port Connectivity Checks: "debouncer:PKclean"                                                                  ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -302,7 +391,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
-    Info: Processing started: Tue Nov 29 14:27:07 2022
+    Info: Processing started: Thu Dec  1 15:13:07 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ARM_processor -c ARM_processor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -310,18 +399,75 @@ Warning (12125): Using design file arm_processor.sv, which is not specified as a
     Info (12023): Found entity 1: ARM_processor File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 2
 Warning (10236): Verilog HDL Implicit Net warning at arm_processor.sv(16): created implicit net for "CLK_clean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 16
 Warning (10236): Verilog HDL Implicit Net warning at arm_processor.sv(18): created implicit net for "PK_clean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 18
+Warning (10236): Verilog HDL Implicit Net warning at arm_processor.sv(28): created implicit net for "CLR" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 28
+Warning (10236): Verilog HDL Implicit Net warning at arm_processor.sv(42): created implicit net for "KEY1" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 42
 Info (12127): Elaborating entity "ARM_processor" for the top level hierarchy
-Warning (10034): Output port "LED_B" at arm_processor.sv(6) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
-Warning (10034): Output port "HEX0" at arm_processor.sv(7) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 7
-Warning (10034): Output port "HEX1" at arm_processor.sv(8) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 8
-Warning (10034): Output port "HEX2" at arm_processor.sv(9) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 9
+Warning (10036): Verilog HDL or VHDL warning at arm_processor.sv(22): object "INSTR" assigned a value but never read File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 22
 Warning (10034): Output port "HEX3" at arm_processor.sv(10) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 10
 Warning (10034): Output port "HEX4" at arm_processor.sv(11) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 11
-Warning (10034): Output port "HEX5" at arm_processor.sv(13) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 13
-Warning (10034): Output port "done" at arm_processor.sv(5) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
 Warning (12125): Using design file debouncer.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: debouncer File: C:/Users/neilr/Desktop/Project_2/Project_2/debouncer.sv Line: 15
 Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:CLKclean" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 16
+Warning (12125): Using design file reg10.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: reg10 File: C:/Users/neilr/Desktop/Project_2/Project_2/reg10.sv Line: 1
+Info (12128): Elaborating entity "reg10" for hierarchy "reg10:nextInst" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 23
+Warning (12125): Using design file counter.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: counter File: C:/Users/neilr/Desktop/Project_2/Project_2/counter.sv Line: 1
+Info (12128): Elaborating entity "counter" for hierarchy "counter:timeStep" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 28
+Warning (10230): Verilog HDL assignment warning at counter.sv(11): truncated value with size 32 to match size of target (2) File: C:/Users/neilr/Desktop/Project_2/Project_2/counter.sv Line: 11
+Warning (12125): Using design file registerfile.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: registerFile File: C:/Users/neilr/Desktop/Project_2/Project_2/registerfile.sv Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at registerfile.sv(17): created implicit net for "ENR0" File: C:/Users/neilr/Desktop/Project_2/Project_2/registerfile.sv Line: 17
+Info (12128): Elaborating entity "registerFile" for hierarchy "registerFile:regBank" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 36
+Warning (12125): Using design file decoder_3to8.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: decoder_3to8 File: C:/Users/neilr/Desktop/Project_2/Project_2/decoder_3to8.sv Line: 1
+Info (12128): Elaborating entity "decoder_3to8" for hierarchy "registerFile:regBank|decoder_3to8:write_decoder" File: C:/Users/neilr/Desktop/Project_2/Project_2/registerfile.sv Line: 16
+Warning (12125): Using design file trireg10.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: trireg10 File: C:/Users/neilr/Desktop/Project_2/Project_2/trireg10.sv Line: 1
+Info (12128): Elaborating entity "trireg10" for hierarchy "registerFile:regBank|trireg10:R0" File: C:/Users/neilr/Desktop/Project_2/Project_2/registerfile.sv Line: 21
+Warning (12125): Using design file msalu.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: msALU File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 1
+Info (12128): Elaborating entity "msALU" for hierarchy "msALU:doMath" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 39
+Warning (10240): Verilog HDL Always Construct warning at msalu.sv(30): inferring latch(es) for variable "Result", which holds its previous value in one or more paths through the always construct File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 30
+Info (10041): Inferred latch for "Result[0]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[1]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[2]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[3]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[4]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[5]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[6]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[7]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[8]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Info (10041): Inferred latch for "Result[9]" at msalu.sv(35) File: C:/Users/neilr/Desktop/Project_2/Project_2/msalu.sv Line: 35
+Warning (12125): Using design file display.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: display File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 1
+Info (12128): Elaborating entity "display" for hierarchy "display:displayStuff" File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 42
+Warning (10034): Output port "LED_B" at display.sv(6) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 6
+Warning (10034): Output port "DHEX0" at display.sv(7) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 7
+Warning (10034): Output port "DHEX1" at display.sv(8) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 8
+Warning (10034): Output port "DHEX2" at display.sv(9) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 9
+Warning (10034): Output port "THEX" at display.sv(10) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 10
+Warning (10034): Output port "LED_D" at display.sv(12) has no driver File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 12
+Warning (12125): Using design file hex7decoder.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: hex7decoder File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 1
+Info (12128): Elaborating entity "hex7decoder" for hierarchy "display:displayStuff|hex7decoder:busOut" File: C:/Users/neilr/Desktop/Project_2/Project_2/display.sv Line: 16
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(8): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 8
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(9): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 9
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(10): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 10
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(11): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 11
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(12): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 12
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(13): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 13
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(14): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 14
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(15): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 15
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(16): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 16
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(17): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 17
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(18): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 18
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(19): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 19
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(20): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 20
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(21): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 21
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(22): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 22
+Warning (10230): Verilog HDL assignment warning at hex7decoder.sv(23): truncated value with size 15 to match size of target (7) File: C:/Users/neilr/Desktop/Project_2/Project_2/hex7decoder.sv Line: 23
+Warning (12241): 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "done" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 5
     Warning (13410): Pin "LED_B[0]" is stuck at GND File: C:/Users/neilr/Desktop/Project_2/Project_2/arm_processor.sv Line: 6
@@ -401,10 +547,10 @@ Warning (21074): Design contains 13 input pin(s) that do not drive logic
 Info (21057): Implemented 72 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 59 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 87 warnings
-    Info: Peak virtual memory: 4753 megabytes
-    Info: Processing ended: Tue Nov 29 14:27:21 2022
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:33
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 118 warnings
+    Info: Peak virtual memory: 4749 megabytes
+    Info: Processing ended: Thu Dec  1 15:13:22 2022
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:34
 
 

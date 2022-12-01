@@ -1,5 +1,5 @@
 Flow report for ARM_processor
-Tue Nov 29 14:29:04 2022
+Thu Dec  1 15:13:54 2022
 Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Nov 29 14:29:04 2022       ;
+; Flow Status                        ; Successful - Thu Dec  1 15:13:47 2022       ;
 ; Quartus Prime Version              ; 21.1.1 Build 850 06/23/2022 SJ Lite Edition ;
 ; Revision Name                      ; ARM_processor                               ;
 ; Top-level Entity Name              ; ARM_processor                               ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/29/2022 14:27:07 ;
+; Start date & time ; 12/01/2022 15:13:08 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ARM_processor       ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 1099415125782.166975362716712          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 1099415125782.166992918808604          ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -93,13 +93,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 4738 MB             ; 00:00:33                           ;
+; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 4734 MB             ; 00:00:33                           ;
 ; Fitter               ; 00:00:17     ; 1.0                     ; 5635 MB             ; 00:00:15                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4724 MB             ; 00:00:04                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4724 MB             ; 00:00:04                           ;
 ; Timing Analyzer      ; 00:00:05     ; 1.0                     ; 4834 MB             ; 00:00:04                           ;
-; Fitter               ; 00:00:10     ; 1.0                     ; 5635 MB             ; 00:00:14                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 4732 MB             ; 00:00:04                           ;
-; Total                ; 00:00:54     ; --                      ; --                  ; 00:01:14                           ;
+; Total                ; 00:00:40     ; --                      ; --                  ; 00:00:56                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -112,8 +110,6 @@ https://fpgasoftware.intel.com/eula.
 ; Fitter               ; DESKTOP-T2F53IJ  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Assembler            ; DESKTOP-T2F53IJ  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Timing Analyzer      ; DESKTOP-T2F53IJ  ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; DESKTOP-T2F53IJ  ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; DESKTOP-T2F53IJ  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -124,8 +120,6 @@ quartus_map --read_settings_files=on --write_settings_files=off ARM_processor -c
 quartus_fit --read_settings_files=off --write_settings_files=off ARM_processor -c ARM_processor
 quartus_asm --read_settings_files=off --write_settings_files=off ARM_processor -c ARM_processor
 quartus_sta ARM_processor -c ARM_processor
-quartus_fit --read_settings_files=on --write_settings_files=off ARM_processor -c ARM_processor
-quartus_asm --read_settings_files=off --write_settings_files=off ARM_processor -c ARM_processor
 
 
 
