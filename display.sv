@@ -11,12 +11,23 @@ module display (
     output logic LED_D
 );
 
-    //if PEEKb = 1, DHEX[0:2] shows current 10-bit value on data bus
-        //extract 3bit value, pad with 0?
-        hex7decoder busOut ();
-    //if PEEKb = 0, DHEX[0:2] shows 10-bit output from register file Q1
-        hex7decoder regOut ();
-        
+hex7decoder busOut (.in(BUS), .num(LED_B));
+hex7decoder busOut (.in(TIME), .num(THEX));
+assign LED_D = DONE;
+
+begin
+    if (PEEKb == 1)
+        //DHEX[0:2] shows current 10-bit value on data bus
+        hex7decoder busOut (.in(BUS), .num(DHEX0));
+        hex7decoder busOut (.in(BUS), .num(DHEX1));
+        hex7decoder busOut (.in(BUS), .num(DHEX2));
+    else
+        //DHEX[0:2] shows 10-bit output from register file Q1
+        hex7decoder regOut (.in(REG), .num(DHEX0));
+        hex7decoder busOut (.in(REG), .num(DHEX1));
+        hex7decoder busOut (.in(REG), .num(DHEX2));
+end
+
 
 
 endmodule

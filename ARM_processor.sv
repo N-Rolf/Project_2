@@ -18,17 +18,19 @@ module ARM_processor (
 	debouncer PKclean (.A_noisy(PKb), .CLK50M(CLK), .A(PK_clean)); //PKb=KEY1
 
     //instruction register
-    logic IRin = 0; //debug only
-    logic nextInst_out, INSTR;
+    logic [2:0] nextInst_out;
+    logic INSTR;
     reg10 nextInst (.D(Data_in), .EN(IRin), .CLKb(CLK_clean), .Q(nextInst_out));
-    assign INSTR = nextInst_out;
+    //assign INSTR = nextInst_out;
 
     //counter
     logic count;
     counter timeStep (.CLR(CLR), .CLK(CLK_clean), .CNT(count));
 
     //controller
-    //borked, debug with manual values
+    logic [9:0] C_IMM;
+    logic C_Rin, C_Rout, C_ENW, C_ENR, C_Ain, C_Gin, C_Gout, C_Ext, C_IRin;
+    controller borked (.INSR(nextInst_out), .T(count), .IMM(C_IMM), .ALUcont(), .Rin(), .Rout(). .ENW(), .ENR(), .Ain(), .Gin(), .Gout(), .Ext(), .IRin(), .done(done));
 
     //register file
     logic [9:0] Q1_out;
