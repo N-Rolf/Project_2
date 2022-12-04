@@ -1,8 +1,8 @@
 module trireg10 (
 	input logic [9:0] D,
 	input logic CLKb, Rin, Rout0, Rout1,
-	output trireg [9:0] Q0,
-	output trireg [9:0] Q1
+	output tri [9:0] Q0,
+	output tri [9:0] Q1
 	);
 	
 	logic [9:0] _Q;

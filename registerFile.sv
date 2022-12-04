@@ -1,6 +1,6 @@
 module registerFile (
     input logic [9:0] D,
-    input logic ENW, ENRO, CLKb,
+    input logic ENW, ENR0, CLKb,
     input logic [2:0] WRA, RDA0, RDA1,
     output logic [9:0] Q0, Q1
 );

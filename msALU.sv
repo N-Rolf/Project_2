@@ -27,49 +27,47 @@ module msALU (
 
 	always
 	begin
-		if (FN == ADD)
+		if (ALUControl == ADD)
 		begin
 			Result = A + OP;	
 		end	
 		
-		else if (FN == SUB)
+		else if (ALUControl == SUB)
 		begin
 			Result = A - OP;
 		end
 
-		else if (FN == INV)
+		else if (ALUControl == INV)
 		begin
 			Result = -(OP);
 		end
 
-		else if (FN == AND)
+		else if (ALUControl == AND)
 		begin
 			Result = A & OP;
 		end
 		
-		else if (FN == OR)
+		else if (ALUControl == OR)
 		begin
 			Result = A | OP;
 		end
 		
-		else if (FN == XOR)
+		else if (ALUControl == XOR)
 		begin
 			Result = A ^ OP;
 		end
+		
+		if (Gout)
+			Q <= G;
+		
 	end
 	
 			
 	always_ff @ (negedge CLKb)
-	begin
 		begin
 		if (Gin)
 			G <= Result;
 		end
-		begin
-		if (Gout)
-			Q <= G;
-		end
-	end
 		
 endmodule 
 

@@ -7,10 +7,18 @@ module ARM_processor (
     output logic [7:0] HEX0,
     output logic [7:0] HEX1,
     output logic [7:0] HEX2,
-    output logic [7:0] HEX3,
-    output logic [7:0] HEX4,
     output logic [7:0] HEX5
 );
+
+	logic [9:0] data;
+	always
+	begin
+	data = 10'bzzzzzzzzzz;
+	
+	if (C_Ext == 1)
+		data <= Data_in;
+	
+	end
 
 	//clock key debounce
 	debouncer CLKclean (.A_noisy(CLKb), .CLK50M(CLK), .A(CLK_clean)); //CLKb=KEY0, CLK=50mhz PIN_P11
@@ -18,30 +26,32 @@ module ARM_processor (
 	debouncer PKclean (.A_noisy(PKb), .CLK50M(CLK), .A(PK_clean)); //PKb=KEY1
 
     //instruction register
-    logic [2:0] nextInst_out;
+    logic [9:0] nextInst_out;
     logic INSTR;
-    reg10 nextInst (.D(Data_in), .EN(IRin), .CLKb(CLK_clean), .Q(nextInst_out));
+    reg10 nextInst (.D(data), .EN(IRin), .CLKb(CLK_clean), .Q(nextInst_out));
     //assign INSTR = nextInst_out;
 
     //counter
-    logic count;
-    counter timeStep (.CLR(CLR), .CLK(CLK_clean), .CNT(count));
+    logic [2:0] count;
+    counter timeStep (.CLR(done), .CLK(CLK_clean), .CNT(count));
 
     //controller
     logic [9:0] C_IMM;
-    logic C_Rin, C_Rout, C_ENW, C_ENR, C_Ain, C_Gin, C_Gout, C_Ext, C_IRin;
-    controller borked (.INSR(nextInst_out), .T(count), .IMM(C_IMM), .ALUcont(), .Rin(), .Rout(). .ENW(), .ENR(), .Ain(), .Gin(), .Gout(), .Ext(), .IRin(), .done(done));
+    logic [2:0] C_Rin;
+	 logic C_Rout, C_ENW, C_ENR, C_Ain, C_Gin, C_Gout, C_Ext, C_IRin;
+	 logic [2:0] ALUcont;
+	 logic [2:0] RDA0;
+    control_circuit borked (.INSTR(nextInst_out), .T(count), .IMM(data), .ALUcont(ALUcont), .Rin(C_Rin), .Rout(RDA0), .ENW(C_ENW), .ENR(C_ENR), .Ain(C_Ain), .Gin(C_Gin), .Gout(C_Gout), .Ext(C_Ext), .IRin(C_IRin), .done(done));
 
     //register file
     logic [9:0] Q1_out;
-    logic [9:0] Q0_out;
-    registerFile regBank (.D(Data_in), .ENW(), .ENRO(), .CLKb(CLK_clean), .WRA(), .RDA0(), .RDA1(), .Q0(Q0_out), .Q1(Q1_out));
+    registerFile regBank (.D(data), .ENW(C_ENW), .ENR0(C_ENR), .CLKb(CLK_clean), .WRA(C_Rin), .RDA0(RDA0), .RDA1(Data_in[2:0]), .Q0(data), .Q1(Q1_out));
     //multi-ALU
     logic [9:0] RES_out;
-    msALU doMath (.OP(Data_in), .FN(), .Ain(), .Gin(), .Gout(), .CLKb(CLK_clean), .Q(RES_out));
+    //msALU doMath (.OP(data), .ALUControl(ALUcont), .Ain(C_Ain), .Gin(C_Gin), .Gout(C_Gout), .CLKb(CLK_clean), .Q(data));
 
     //output
-    display displayStuff (.BUS(RES_out), .REG(Q1_out), .TIME(count), .PEEKb(KEY1), .DONE(done), .LED_B(LED_B), .DHEX0(HEX0), .DHEX1(HEX1), .DHEX2(HEX2), .THEX(HEX5), .LED_D());
+    display displayStuff (.BUS(data), .REG(Q1_out), .TIME(count), .PEEKb(KEY1), .DONE(done), .CLK(CLK_clean), .LED_B(LED_B), .DHEX0(HEX0), .DHEX1(HEX1), .DHEX2(HEX2), .THEX(HEX5), .LED_D(done));
 
 
 endmodule

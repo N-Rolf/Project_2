@@ -1,40 +1,53 @@
 module control_circuit (
 input logic [9:0] INSTR,
 input logic [1:0] T,
-output logic [9:0] IMM,
-output logic [2:0] ALUcont,
-output logic Rin, Rout, ENW, ENR, Ain, Gin, Gout, Ext, IRin, done
+output tri [9:0] IMM,
+output logic [2:0] ALUcont, Rin, Rout,
+output logic ENW, ENR, Ain, Gin, Gout, Ext, IRin, done
 );
 
+
 logic [2:0] Xreg;
+assign Xreg = INSTR[8:6];
 logic [2:0] Yreg;
+assign Yreg = INSTR [5:3];
 
 //date to reg setup
 
 always @(T)
 begin
 	//set all flags to zero
+	IMM = 10'bzzzzzzzzzz;
+	
 	ENW = 1'b0;
 	ENR = 1'b0;
 	Ain = 1'b0;
 	Gin = 1'b0;
 	Gout = 1'b0;
-	EXT = 1'b0;
+	Ext = 1'b0;
 	IRin = 1'b0;
 	done = 1'b0;
 
 	case(T)
 		2'b00:	//timestep 0 (nothing asserted)
 				//enable instr reg
+				begin
+				Ext = 1'b1;
+				IRin = 1'b1;
+				end
 		2'b01:	//timestep 1
-			case(I)
+			begin
+			case(INSTR[2:0])
 				3'b000: begin //LOAD
+					Ext = 1'b1;
 					ENW = 1'b1;
 					Rin = Xreg;
 					done = 1'b1;
 					end
 				3'b001: begin //MOVE
-					Rout = Y;
+					ENW = 1'b1;
+					ENR = 1'b1;
+					Rout = Yreg;
 					Rin = Xreg;
 					done = 1'b1;
 					end
@@ -72,8 +85,10 @@ begin
 					
 					end
 			endcase
+			end
 		2'b10: //timestep 2
-			case(I)
+			begin
+			case(ALUcont)
 				3'b010: begin //ADD
 
 					end
@@ -93,7 +108,8 @@ begin
 
 					end
 			endcase
+			end
 	endcase
-end
+	end
 
 endmodule
