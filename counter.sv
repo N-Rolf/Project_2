@@ -8,7 +8,7 @@ begin
 	if (CLR)
 		CNT <= 0;
 	else
-		CNT <= CNT + 1;
+		CNT <= CNT + 1'b1;
 	end
 
 

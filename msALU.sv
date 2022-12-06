@@ -9,66 +9,51 @@ module msALU (
 	logic [9:0] Result;
 	logic [9:0] G;
 	
+	//saves into register A
+	reg10 regOne (.D(OP), .EN(Ain), .CLKb(CLKb), .Q(A));
 	
-	always_ff @ (negedge CLKb)
-	begin
-		begin
-		if (Ain)
-			A <= OP;
-		end
-	end
 	
-	parameter		ADD = 3'b000,
+	
+	parameter	ADD = 3'b000,
 					SUB = 3'b001,
 					INV = 3'b010,
 					AND = 3'b011,
 					OR = 3'b100,
 					XOR = 3'b101;
 
-	always
+	always_comb
 	begin
-		if (ALUControl == ADD)
-		begin
-			Result = A + OP;	
-		end	
+		Result = 10'b0;
 		
-		else if (ALUControl == SUB)
-		begin
-			Result = A - OP;
-		end
-
-		else if (ALUControl == INV)
-		begin
-			Result = -(OP);
-		end
-
-		else if (ALUControl == AND)
-		begin
-			Result = A & OP;
-		end
-		
-		else if (ALUControl == OR)
-		begin
-			Result = A | OP;
-		end
-		
-		else if (ALUControl == XOR)
-		begin
-			Result = A ^ OP;
-		end
-		
-		if (Gout)
-			Q <= G;
-		
-	end
-	
+		case(ALUControl)
+			ADD : Result = A + OP;
 			
-	always_ff @ (negedge CLKb)
-		begin
-		if (Gin)
-			G <= Result;
-		end
-		
-endmodule 
+			SUB: Result = A - OP;
+			
+			INV: Result = 10'b00_0000_0000 - OP;
+			
+			AND: Result = A & OP;
+			
+			OR: Result = A | OP;
+			
+			XOR: Result = A ^ OP;
+			
+			endcase
+	end
+			
+
+	reg10 regTwo (.D(Result), .EN(Gin), .CLKb(CLKb), .Q(G));
+	
+	
+	always_comb
+    begin  
+        if(Gout) //check if exit bit non-zero
+            Q = G; //if exitbit not zero save instruction to tri-state buffer output
+			
+        else
+            Q = 10'bz; //save a 10 bit buffer zone if exit bit zero
+    end
+	 
+endmodule
 
 	
